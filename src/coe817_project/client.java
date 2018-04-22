@@ -6,7 +6,7 @@ package coe817_project;
  */
 public class client {
     
-    private static ClientCon conn = null;
+    private static ClientCon conn = null;                                       // an object of ClientConn used to connect to server
     
     public static void main(String[] args) {
         
