@@ -25,7 +25,12 @@ public class client {
         }
         
         DiningAlgoLoop loop = new DiningAlgoLoop(conn);                         /*****MIGHT NEED TO ADD OUTPUT TO REVERT TO ORIGINAL CONSTRUCTOR******/
+        System.out.println(loop.toString());                                    /*****CODE TO SET THE TEXT TO BE INPUT********************************/
         
+        loop.run();
+        conn.disconnect();
+        
+        System.exit(0);
     }
     
 }
