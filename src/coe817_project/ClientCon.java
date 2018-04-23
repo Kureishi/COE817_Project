@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.net.UnknownHostException;
 import java.net.ConnectException;
 
@@ -73,4 +74,48 @@ public class ClientCon {
         return newMessage;                                                      // return the message that was read
     }
     
+    /**
+     * Receive a KeyCollection object from Server
+     */
+    public KeyCollection receiveKeyCollection() throws IOException, ClassNotFoundException {
+        KeyCollection kSet = null;
+        
+        kSet = (KeyCollection) inStream.readObject();                           // read in object (from server on other end) and cast to KeyCollection (since terminal in bytes)
+        
+        return kSet;                                                            // return the KeyCollection object
+    }
+    
+    @SuppressWarnings("unchecked")                                              // suppress "unchecked" warnings (also in all containing elements)
+    public ArrayList<Message> receiveSessionResults() throws IOException{
+        ArrayList<Message> message = null;                                      // store messages in an array list
+        
+        try {
+            message = (ArrayList<Message>) inStream.readObject();               // get from the stream and cast it into a message to put in array list
+        }
+        catch(ClassNotFoundException e) {                                       // catch exception
+            return null;
+        }
+        
+        return message;                                                         // return message received
+    }
+    
+    /**
+     * Disconnect client from server
+     */
+    public void disconnect() {
+        try {
+            inStream.close();                                                   // close stream and socket
+            outStream.close();
+            sock.close();
+        }
+        catch(IOException e) {                                                  // catch exception
+            e.printStackTrace();
+        }
+    }
+    
+    @Override
+    public String toString() {                                                  // override toString method
+        return serverAddr + ":" + serverPort;
+    } 
+     
 }
