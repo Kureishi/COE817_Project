@@ -5,6 +5,18 @@ package coe817_project;
  * 
  * @author Sachin
  */
-public class DiningAlgoLoop {
+public class DiningAlgoLoop implements Input{
+    private final static int MAX_CHARACTER = '\uffff';                          // unsigned (max value)
+    private final ClientCon connection;
+    private Output out = null;
     
+    
+    
+    
+    
+    
+    @Override
+    public void inputStr(String str) {
+        
+    }
 }
