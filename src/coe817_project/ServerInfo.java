@@ -20,7 +20,7 @@ public class ServerInfo {
     private int numSent = 0;
     private int numClients, amtKeys = 0;
     private ArrayList<Message> currentMsgs;
-    private KeyCollection keys = null;
+    private KeyCollection[] keys = null;
     
     public ServerInfo(int numReplies, int numClients, ArrayList<Message> currentMsgs){
         this.numSent = numReplies;
@@ -82,6 +82,14 @@ public class ServerInfo {
             for(int j=i+1;j<numClients;j++){
                 
                 //key generation
+                Key key = Key.generateRandKey();
+                
+                Key keyop = new Key(key.getKey(), KeyOperation.ADD);
+                Key keyn = new Key(key.getKey(), KeyOperation.SUB);
+                
+                keys[i].addKey(keyop);
+                keys[j].addKey(keyn);
+                
             }
         }
     }
