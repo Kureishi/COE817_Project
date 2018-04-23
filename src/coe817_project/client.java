@@ -24,6 +24,8 @@ public class client {
             System.exit(1);                                                     // change exit code to 1 -> catchall for general errors
         }
         
+        DiningAlgoLoop loop = new DiningAlgoLoop(conn);                         /*****MIGHT NEED TO ADD OUTPUT TO REVERT TO ORIGINAL CONSTRUCTOR******/
+        
     }
     
 }
