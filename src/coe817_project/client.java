@@ -27,10 +27,10 @@ public class client {
         DiningAlgoLoop loop = new DiningAlgoLoop(conn);                         /*****MIGHT NEED TO ADD OUTPUT TO REVERT TO ORIGINAL CONSTRUCTOR******/
         System.out.println(loop.toString());                                    /*****CODE TO SET THE TEXT TO BE INPUT********************************/
         
-        loop.run();
-        conn.disconnect();
+        loop.start();                                                           // start the main loop for client(s) and server communication
+        conn.disconnect();                                                      // afterwards, disconnect from connection when finished
         
-        System.exit(0);
+        System.exit(0);                                                         // if reach here, successful run
     }
     
 }
