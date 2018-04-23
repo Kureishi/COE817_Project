@@ -31,8 +31,7 @@ public class DiningAlgoLoop implements Input{
         
         while(true) {
             try {  
-                KeyCollection keys = new KeyCollection();
-                keys.getKeyCollection();                                        // get the set of keys
+                KeyCollection keys = getKeyCollection();                        // get the set of keys                                        
                 
                 if (keys == null) {                                             // something wrong or receive command to shut down
                     break;
@@ -66,13 +65,39 @@ public class DiningAlgoLoop implements Input{
                     break;
                 }
                 else {
-                    System.err.println("Server request unexpected");            // not in Communication Protocol
+                    System.err.println("Server request unexpected");            // not in Communication Protocol (print to error stream)
                 }
                 
             } catch (IOException e) {
                 e.printStackTrace();
             }        
         }
+    }
+    
+    public char collate(ArrayList<Message> message_set) {
+        int sum = 0;
+        
+        for(Message m: message_set) {
+            sum += Integer.parseInt(m.getMsg());                                // parse through the message and return an int to add to sum (each message) -> give idea of amount messages
+        }
+        
+        if(sum == 0) {                                                          // size 0 -> number of messages 0
+            System.out.println("No message transmitted");
+        }
+        else if(sum >= 2*MAX_CHARACTER) {                                       // if higher than double Max, means added around same time
+            System.out.println("Collision occured");
+        }
+        else {
+            sum -= MAX_CHARACTER;                                               // keep subtracting max character value from it
+        }
+        
+        return (char)sum;                                                       // return sum as character
+    }
+    
+    private KeyCollection getKeyCollection() throws IOException {               // private (only this class) as to not confuse with the one in KeyCollection class
+        KeyCollection keys = null;
+        
+        
     }
     
     
