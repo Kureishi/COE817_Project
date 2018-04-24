@@ -111,7 +111,7 @@ public class ServerSend {
     public void sendKeys(ClientSock client) throws IOException {
         KeyCollection key = serverInfo.getKeys();
         
-        //client.send(key);
+        client.send(key);
         
         Message reply = client.receiveMsg();
         if(reply.getMsg().equals(CommProtocol.ACK)){

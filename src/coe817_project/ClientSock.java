@@ -53,6 +53,10 @@ public class ClientSock {
         out.writeObject(message);
     }
     
+    public void send(KeyCollection keys) throws IOException{
+        out.writeObject(keys);
+    }
+    
     public void send(ArrayList<Message> currentRoundMessages) throws IOException {
         out.writeObject(currentRoundMessages);
     }
